@@ -1,0 +1,24 @@
+---
+- name: Install Sway
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - sway
+  tags:
+    - sway
+
+- name: Install sway extras
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - conky
+    - dmenu
+    - dunst
+    - feh
+  tags:
+    - sway

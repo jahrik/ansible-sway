@@ -1,4 +1,6 @@
 ---
-# tasks file for jahrik.sway
+- include_tasks: install.yml
+  when: install | default('true') == true
 
-# Install xorg-xwayland
+- include_tasks: uninstall.yml
+  when: install | default('true') == false

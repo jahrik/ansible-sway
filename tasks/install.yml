@@ -1,0 +1,36 @@
+---
+- include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Create ~/.config/sway directory
+  become: false
+  file:
+    path: "~/.config/sway"
+    state: directory
+  tags:
+    - sway
+
+- name: generate sway config files
+  become: false
+  template:
+    src: "{{ item }}.j2"
+    dest: "~/.config/sway/{{ item }}"
+  with_items:
+    - config
+  tags:
+    - sway
+
+- name: create $HOME/screenshots dir for scrot
+  become: false
+  file:
+    path: "~/screenshots/"
+    state: directory
+  tags:
+    - sway
+
+- name: Set default background image for feh
+  become: false
+  copy:
+    src: background.jpg
+    dest: "~/.config/sway/background.jpg"
+  tags:
+    - sway
