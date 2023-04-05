@@ -5,14 +5,16 @@ Sway
 
 Installs and configures Sway
 
+New to sway, but have been using i3 for a few years now. Trying wayland and sway. These are my configs.
+
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+yaml```
     - hosts: laptops
       roles:
-         - { role: jahrik.sway, x: 42 }
+         - { role: jahrik.sway, install: true, sway.terminal: alacritty }
+```
 
 License
 -------
