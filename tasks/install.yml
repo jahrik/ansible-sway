@@ -1,36 +1,39 @@
 ---
-- include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: Include OS dependencies
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 - name: Create ~/.config/sway directory
   become: false
-  file:
+  ansible.builtin.file:
     path: "~/.config/sway"
     state: directory
+    mode: "0755"
   tags:
     - sway
 
-- name: generate sway config files
+- name: Generate sway config files
   become: false
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "~/.config/sway/{{ item }}"
+    mode: "0644"
   with_items:
     - config
   tags:
     - sway
 
-- name: create $HOME/screenshots dir for scrot
-  become: false
-  file:
-    path: "~/screenshots/"
-    state: directory
-  tags:
-    - sway
-
-- name: Set default background image for feh
-  become: false
-  copy:
-    src: background.jpg
-    dest: "~/.config/sway/background.jpg"
-  tags:
-    - sway
+# - name: create $HOME/screenshots dir for scrot
+#   become: false
+#   file:
+#     path: "~/screenshots/"
+#     state: directory
+#   tags:
+#     - sway
+#
+# - name: Set default background image for feh
+#   become: false
+#   copy:
+#     src: background.jpg
+#     dest: "~/.config/sway/background.jpg"
+#   tags:
+#     - sway

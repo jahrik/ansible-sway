@@ -1,24 +1,35 @@
 ---
 - name: Install Sway
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   with_items:
-    - sway
-  tags:
     - sway
 
 - name: Install Sway Extras
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   with_items:
+    - wayland
     - xorg-xwayland
-    - conky
+    - seatd
     - dmenu
     - dunst
-    - feh
-  tags:
-    - sway
+    # - swayr  # AUR
+
+- name: Ensure seatd started and enabled
+  become: true
+  ansible.builtin.service:
+    name: seatd
+    state: started
+    enabled: true
+
+# - name: Add user to seat group
+#   become: false  # "useradd: Permission denied"
+#   ansible.builtin.user:
+#     name: "{{ lookup('env', 'USER') }}"
+#     groups: seat
+#     append: true
