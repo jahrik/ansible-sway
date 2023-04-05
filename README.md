@@ -14,9 +14,23 @@ Example Playbook
 ----------------
 
 ```yaml
-    - hosts: laptops
-      roles:
-         - { role: jahrik.sway, install: true, sway.terminal: alacritty }
+---
+- hosts: all
+  become: true
+  roles:
+    - jahrik.sway
+  vars:
+    install: true
+    sway:
+      lock: true
+      bar: swayrbar
+      terminal: alacritty
+      mod: Mod1
+      left: h
+      down: j
+      up: k
+      right: l
+      background: ~/.config/sway/background.jpg
 ```
 
 License
