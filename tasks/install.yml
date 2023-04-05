@@ -22,18 +22,20 @@
   tags:
     - sway
 
-# - name: create $HOME/screenshots dir for scrot
-#   become: false
-#   file:
-#     path: "~/screenshots/"
-#     state: directory
-#   tags:
-#     - sway
-#
-# - name: Set default background image for feh
-#   become: false
-#   copy:
-#     src: background.jpg
-#     dest: "~/.config/sway/background.jpg"
-#   tags:
-#     - sway
+- name: Create $HOME/screenshots dir
+  become: false
+  ansible.builtin.file:
+    path: "~/screenshots/"
+    state: directory
+    mode: "0755"
+  tags:
+    - sway
+
+- name: Set default background image
+  become: false
+  ansible.builtin.copy:
+    src: background.jpg
+    dest: "~/.config/sway/background.jpg"
+    mode: "0644"
+  tags:
+    - sway
