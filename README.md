@@ -10,7 +10,7 @@ New to sway, but have been using i3 for a few years now. Trying wayland and sway
 Example Playbook
 ----------------
 
-yaml```
+```yaml
     - hosts: laptops
       roles:
          - { role: jahrik.sway, install: true, sway.terminal: alacritty }
