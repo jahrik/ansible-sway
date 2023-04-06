@@ -13,12 +13,13 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - wayland
-    - xorg-xwayland
-    - seatd
-    - dmenu
     - dunst
-    # - swayr  # AUR
+    - seatd
+    - waybar
+    - wayland
+    - wayland-protocols
+    - xorg-xwayland
+    # - wmenu  # AUR
 
 - name: Ensure seatd started and enabled
   become: true

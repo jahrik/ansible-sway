@@ -8,8 +8,6 @@
     path: "~/.config/sway"
     state: directory
     mode: "0755"
-  tags:
-    - sway
 
 - name: Generate sway config files
   become: false
@@ -19,8 +17,6 @@
     mode: "0644"
   with_items:
     - config
-  tags:
-    - sway
 
 - name: Create $HOME/screenshots dir
   become: false
@@ -28,8 +24,6 @@
     path: "~/screenshots/"
     state: directory
     mode: "0755"
-  tags:
-    - sway
 
 - name: Set default background image
   become: false
@@ -37,5 +31,3 @@
     src: background.jpg
     dest: "~/.config/sway/background.jpg"
     mode: "0644"
-  tags:
-    - sway
