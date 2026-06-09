@@ -1,24 +1,21 @@
 ---
 - name: Install Sway
   become: true
-  package:
-    name: "{{ item }}"
+  ansible.builtin.apt:
+    name:
+      - sway
     state: present
-    update_cache: yes
-  with_items:
-    - sway
+    update_cache: true
+    cache_valid_time: 3600
   tags:
     - sway
 
 - name: Install sway extras
   become: true
-  package:
-    name: "{{ item }}"
+  ansible.builtin.package:
+    name:
+      - dunst
+      - waybar
     state: present
-  with_items:
-    - conky
-    - dmenu
-    - dunst
-    - feh
   tags:
     - sway
