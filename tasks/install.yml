@@ -15,7 +15,7 @@
     src: "{{ item }}.j2"
     dest: "~/.config/sway/{{ item }}"
     mode: "0644"
-  with_items:
+  loop:
     - config
 
 - name: Create $HOME/screenshots dir

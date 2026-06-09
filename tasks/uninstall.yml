@@ -1,7 +1,7 @@
 ---
 - name: Uninstall Sway
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - sway
     state: absent
@@ -10,7 +10,7 @@
 
 - name: Destroy ~/.config/sway directory
   become: false
-  file:
+  ansible.builtin.file:
     path: ~/.config/sway
     state: absent
   tags:
