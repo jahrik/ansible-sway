@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Configure Sway
+  hosts: all
   become: true
   vars:
     install: true
