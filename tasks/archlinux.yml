@@ -5,6 +5,7 @@
     name:
       - sway
     state: present
+    update_cache: true
 
 - name: Install Sway Extras
   become: true
