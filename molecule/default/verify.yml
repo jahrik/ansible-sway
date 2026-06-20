@@ -13,6 +13,16 @@
         that: sway_bin.stat.exists
         fail_msg: "sway binary not found at /usr/bin/sway"
 
+    - name: Run sway --version
+      ansible.builtin.command: sway --version
+      register: sway_version
+      changed_when: false
+
+    - name: Assert sway version output
+      ansible.builtin.assert:
+        that: "'sway' in sway_version.stdout | lower"
+        fail_msg: "sway --version did not produce expected output"
+
     - name: Check sway config directory
       ansible.builtin.stat:
         path: ~/.config/sway
@@ -32,3 +42,13 @@
       ansible.builtin.assert:
         that: sway_cfg.stat.exists
         fail_msg: "~/.config/sway/config not found"
+
+    - name: Check sway background image
+      ansible.builtin.stat:
+        path: ~/.config/sway/background.jpg
+      register: sway_bg
+
+    - name: Assert background image exists
+      ansible.builtin.assert:
+        that: sway_bg.stat.exists
+        fail_msg: "~/.config/sway/background.jpg not found"
