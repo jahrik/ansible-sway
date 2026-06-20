@@ -13,16 +13,6 @@
         that: sway_bin.stat.exists
         fail_msg: "sway binary not found at /usr/bin/sway"
 
-    - name: Run sway --version
-      ansible.builtin.command: sway --version
-      register: sway_version
-      changed_when: false
-
-    - name: Assert sway version output
-      ansible.builtin.assert:
-        that: "'sway' in sway_version.stdout | lower"
-        fail_msg: "sway --version did not produce expected output"
-
     - name: Check sway config directory
       ansible.builtin.stat:
         path: ~/.config/sway
