@@ -32,3 +32,13 @@
       ansible.builtin.assert:
         that: sway_cfg.stat.exists
         fail_msg: "~/.config/sway/config not found"
+
+    - name: Check sway background image
+      ansible.builtin.stat:
+        path: ~/.config/sway/background.jpg
+      register: sway_bg
+
+    - name: Assert background image exists
+      ansible.builtin.assert:
+        that: sway_bg.stat.exists
+        fail_msg: "~/.config/sway/background.jpg not found"
