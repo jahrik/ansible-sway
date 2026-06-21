@@ -26,16 +26,20 @@ Installs and configures [Sway](https://swaywm.org/), a tiling Wayland compositor
 - `tasks/debian.yml` — installs sway via `apt`; installs dunst + waybar
 - `tasks/uninstall.yml` — removes package and `~/.config/sway`
 
-## Testing Commands
+## Testing
 
 ```bash
-# Lint
+uv sync
+source .venv/bin/activate
 yamllint .
-
-# Full molecule test (Arch container)
+ansible-lint
 molecule test
-
-# Iterative
 molecule converge
 molecule destroy
 ```
+
+## CI
+
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Ubuntu 24.04 + Arch Linux via Docker (verify checks binary only — Wayland needs kernel access)
+- **Release**: publishes to Ansible Galaxy on merge to `main`
