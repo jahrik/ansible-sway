@@ -29,6 +29,8 @@ Installs and configures [Sway](https://swaywm.org/), a tiling Wayland compositor
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
