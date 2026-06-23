@@ -13,6 +13,44 @@
         that: sway_bin.stat.exists
         fail_msg: "sway binary not found at /usr/bin/sway"
 
+    - name: Check dunst binary
+      ansible.builtin.stat:
+        path: /usr/bin/dunst
+      register: dunst_bin
+
+    - name: Assert dunst is installed
+      ansible.builtin.assert:
+        that: dunst_bin.stat.exists
+
+    - name: Run dunst --version
+      ansible.builtin.command: dunst --version
+      register: dunst_version
+      changed_when: false
+
+    - name: Assert dunst version output
+      ansible.builtin.assert:
+        that: "'dunst' in dunst_version.stdout | lower"
+
+    - name: Check waybar binary
+      ansible.builtin.stat:
+        path: /usr/bin/waybar
+      register: waybar_bin
+
+    - name: Assert waybar is installed
+      ansible.builtin.assert:
+        that: waybar_bin.stat.exists
+
+    - name: Run waybar --version
+      ansible.builtin.command: waybar --version
+      register: waybar_version
+      changed_when: false
+      failed_when: false
+
+    - name: Assert waybar version output
+      ansible.builtin.assert:
+        that: "'waybar' in waybar_version.stdout | lower"
+      when: waybar_version.rc == 0
+
     - name: Check sway config directory
       ansible.builtin.stat:
         path: ~/.config/sway
