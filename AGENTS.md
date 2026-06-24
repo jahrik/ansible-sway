@@ -34,8 +34,6 @@ source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
-molecule converge
-molecule destroy
 ```
 
 ## CI
