@@ -59,14 +59,6 @@ ansible-lint
 molecule test
 ```
 
-Step by step:
-
-```bash
-molecule converge
-molecule verify
-molecule destroy
-```
-
 Note: Sway cannot run inside Docker (no Wayland kernel capabilities). The verify step checks that the binary exists rather than launching the compositor.
 
 ## License
