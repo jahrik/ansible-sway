@@ -1,0 +1,59 @@
+---
+argument_specs:
+  main:
+    short_description: Install and configure sway
+    options:
+      install:
+        type: bool
+        default: true
+        description: Set to false to uninstall sway and remove its config
+      sway:
+        type: dict
+        description: Values rendered into the generated sway config
+        default:
+          lock: true
+          bar: swayrbar
+          terminal: alacritty
+          mod: Mod1
+          left: h
+          down: j
+          up: k
+          right: l
+          background: ~/.config/sway/background.jpg
+        options:
+          lock:
+            type: bool
+            default: true
+            description: Whether to enable screen locking
+          bar:
+            type: str
+            default: swayrbar
+            description: "Status bar to use (options: polybar, waybar, swayrbar)"
+          terminal:
+            type: str
+            default: alacritty
+            description: Preferred terminal emulator, rendered as $term in the generated config
+          mod:
+            type: str
+            default: Mod1
+            description: Logo/mod key used for keybindings (Mod1 is Alt)
+          left:
+            type: str
+            default: h
+            description: Home-row left direction key (vim-style)
+          down:
+            type: str
+            default: j
+            description: Home-row down direction key (vim-style)
+          up:
+            type: str
+            default: k
+            description: Home-row up direction key (vim-style)
+          right:
+            type: str
+            default: l
+            description: Home-row right direction key (vim-style)
+          background:
+            type: str
+            default: ~/.config/sway/background.jpg
+            description: Path to the wallpaper rendered in the generated config

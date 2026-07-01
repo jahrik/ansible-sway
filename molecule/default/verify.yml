@@ -42,3 +42,37 @@
       ansible.builtin.assert:
         that: sway_bg.stat.exists
         fail_msg: "~/.config/sway/background.jpg not found"
+
+- name: Uninstall
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: "Include jahrik.sway with install: false"
+      ansible.builtin.include_role:
+        name: "jahrik.sway"
+      vars:
+        install: false
+
+- name: Verify uninstall
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check sway binary absent
+      ansible.builtin.stat:
+        path: /usr/bin/sway
+      register: sway_bin_removed
+
+    - name: Assert sway binary is absent
+      ansible.builtin.assert:
+        that: not sway_bin_removed.stat.exists
+        fail_msg: "sway binary still present at /usr/bin/sway after uninstall"
+
+    - name: Check sway config directory absent
+      ansible.builtin.stat:
+        path: ~/.config/sway
+      register: sway_dir_removed
+
+    - name: Assert sway config directory is absent
+      ansible.builtin.assert:
+        that: not sway_dir_removed.stat.exists
+        fail_msg: "~/.config/sway directory still present after uninstall"

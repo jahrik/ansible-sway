@@ -1,8 +1,16 @@
 ---
 - name: Install sway
-  ansible.builtin.include_tasks: install.yml
+  ansible.builtin.include_tasks:
+    file: install.yml
+    apply:
+      tags: [sway, 'sway:install']
   when: install | default(true) | bool
+  tags: [sway, 'sway:install']
 
 - name: Uninstall sway
-  ansible.builtin.include_tasks: uninstall.yml
+  ansible.builtin.include_tasks:
+    file: uninstall.yml
+    apply:
+      tags: [sway, 'sway:uninstall']
   when: not (install | default(true) | bool)
+  tags: [sway, 'sway:uninstall']
