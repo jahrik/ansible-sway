@@ -4,7 +4,6 @@
   community.general.pacman:
     name:
       - sway
-    state: present
     update_cache: true
 
 - name: Install Sway Extras
@@ -17,7 +16,6 @@
       - wayland
       - wayland-protocols
       - xorg-xwayland
-    state: present
 
 - name: Ensure seatd started and enabled
   become: true
